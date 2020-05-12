@@ -1,0 +1,187 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-regn-revo-sdm-suffix-heading" jhiTranslate="testProdDatabaseApp.regnRevo.home.createOrEditLabel">Create or edit a Regn Revo</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.name" for="field_name" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.name' | translate">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.descString" for="field_descString" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.descString' | translate">Desc String</label>
+                    <input type="text" class="form-control" name="descString" id="field_descString"
+                           formControlName="descString"/>
+                    <div *ngIf="editForm.get('descString')!.invalid && (editForm.get('descString')!.dirty || editForm.get('descString')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descString')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.orgInfo" for="field_orgInfo" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.orgInfo' | translate">Org Info</label>
+                    <input type="text" class="form-control" name="orgInfo" id="field_orgInfo"
+                           formControlName="orgInfo"/>
+                    <div *ngIf="editForm.get('orgInfo')!.invalid && (editForm.get('orgInfo')!.dirty || editForm.get('orgInfo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('orgInfo')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('orgInfo')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 4000 }">
+                        This field cannot be longer than 4000 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.revokeTimeSpan" for="field_revokeTimeSpan" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.revokeTimeSpan' | translate">Revoke Time Span</label>
+                    <input type="number" class="form-control" name="revokeTimeSpan" id="field_revokeTimeSpan"
+                           formControlName="revokeTimeSpan"/>
+                    <div *ngIf="editForm.get('revokeTimeSpan')!.invalid && (editForm.get('revokeTimeSpan')!.dirty || editForm.get('revokeTimeSpan')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('revokeTimeSpan')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('revokeTimeSpan')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.revokeStart" for="field_revokeStart" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.revokeStart' | translate">Revoke Start</label>
+                    <div class="input-group">
+                        <input id="field_revokeStart" type="text" class="form-control" name="revokeStart" ngbDatepicker #revokeStartDp="ngbDatepicker" formControlName="revokeStart"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="revokeStartDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('revokeStart')!.invalid && (editForm.get('revokeStart')!.dirty || editForm.get('revokeStart')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('revokeStart')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.revokeOver" for="field_revokeOver" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.revokeOver' | translate">Revoke Over</label>
+                    <div class="input-group">
+                        <input id="field_revokeOver" type="text" class="form-control" name="revokeOver" ngbDatepicker #revokeOverDp="ngbDatepicker" formControlName="revokeOver"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="revokeOverDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('revokeOver')!.invalid && (editForm.get('revokeOver')!.dirty || editForm.get('revokeOver')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('revokeOver')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.punishOrg" for="field_punishOrg" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.punishOrg' | translate">Punish Org</label>
+                    <input type="text" class="form-control" name="punishOrg" id="field_punishOrg"
+                           formControlName="punishOrg"/>
+                    <div *ngIf="editForm.get('punishOrg')!.invalid && (editForm.get('punishOrg')!.dirty || editForm.get('punishOrg')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('punishOrg')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.punishTime" for="field_punishTime" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.punishTime' | translate">Punish Time</label>
+                    <div class="d-flex">
+                        <input id="field_punishTime" type="datetime-local" class="form-control" name="punishTime" formControlName="punishTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.facts" for="field_facts" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.facts' | translate">Facts</label>
+                    <input type="text" class="form-control" name="facts" id="field_facts"
+                           formControlName="facts"/>
+                    <div *ngIf="editForm.get('facts')!.invalid && (editForm.get('facts')!.dirty || editForm.get('facts')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('facts')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.autoProcess" for="field_autoProcess" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.autoProcess' | translate">Auto Process</label>
+                    <input type="checkbox" class="form-control" name="autoProcess" id="field_autoProcess"
+                           formControlName="autoProcess"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.revokeProof" for="field_revokeProof" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.revokeProof' | translate">Revoke Proof</label>
+                    <input type="text" class="form-control" name="revokeProof" id="field_revokeProof"
+                           formControlName="revokeProof"/>
+                    <div *ngIf="editForm.get('revokeProof')!.invalid && (editForm.get('revokeProof')!.dirty || editForm.get('revokeProof')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('revokeProof')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.remarks" for="field_remarks" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.remarks' | translate">Remarks</label>
+                    <input type="text" class="form-control" name="remarks" id="field_remarks"
+                           formControlName="remarks"/>
+                    <div *ngIf="editForm.get('remarks')!.invalid && (editForm.get('remarks')!.dirty || editForm.get('remarks')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('remarks')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnRevo.punishPerson" for="field_punishPerson">Punish Person</label>
+                    <select class="form-control" id="field_punishPerson" name="punishPerson" formControlName="punishPersonId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.lastName }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

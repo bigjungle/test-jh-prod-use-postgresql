@@ -1,0 +1,87 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="testProdDatabaseApp.regnRevo.home.title">Regn Revos</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-regn-revo-sdm-suffix" [routerLink]="['/regn-revo-sdm-suffix/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="testProdDatabaseApp.regnRevo.home.createLabel">
+            Create a new Regn Revo
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="regnRevos?.length === 0">
+        <span jhiTranslate="testProdDatabaseApp.regnRevo.home.notFound">No regnRevos found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="regnRevos?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="testProdDatabaseApp.regnRevo.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="descString"><span jhiTranslate="testProdDatabaseApp.regnRevo.descString">Desc String</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="orgInfo"><span jhiTranslate="testProdDatabaseApp.regnRevo.orgInfo">Org Info</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="revokeTimeSpan"><span jhiTranslate="testProdDatabaseApp.regnRevo.revokeTimeSpan">Revoke Time Span</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="revokeStart"><span jhiTranslate="testProdDatabaseApp.regnRevo.revokeStart">Revoke Start</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="revokeOver"><span jhiTranslate="testProdDatabaseApp.regnRevo.revokeOver">Revoke Over</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="punishOrg"><span jhiTranslate="testProdDatabaseApp.regnRevo.punishOrg">Punish Org</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="punishTime"><span jhiTranslate="testProdDatabaseApp.regnRevo.punishTime">Punish Time</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="facts"><span jhiTranslate="testProdDatabaseApp.regnRevo.facts">Facts</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="autoProcess"><span jhiTranslate="testProdDatabaseApp.regnRevo.autoProcess">Auto Process</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="revokeProof"><span jhiTranslate="testProdDatabaseApp.regnRevo.revokeProof">Revoke Proof</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="remarks"><span jhiTranslate="testProdDatabaseApp.regnRevo.remarks">Remarks</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="punishPersonLastName"><span jhiTranslate="testProdDatabaseApp.regnRevo.punishPerson">Punish Person</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let regnRevo of regnRevos ;trackBy: trackId">
+                    <td><a [routerLink]="['/regn-revo-sdm-suffix', regnRevo.id, 'view']">{{ regnRevo.id }}</a></td>
+                    <td>{{ regnRevo.name }}</td>
+                    <td>{{ regnRevo.descString }}</td>
+                    <td>{{ regnRevo.orgInfo }}</td>
+                    <td>{{ regnRevo.revokeTimeSpan }}</td>
+                    <td>{{ regnRevo.revokeStart | date:'mediumDate' }}</td>
+                    <td>{{ regnRevo.revokeOver | date:'mediumDate' }}</td>
+                    <td>{{ regnRevo.punishOrg }}</td>
+                    <td>{{ regnRevo.punishTime | date:'medium' }}</td>
+                    <td>{{ regnRevo.facts }}</td>
+                    <td>{{ regnRevo.autoProcess }}</td>
+                    <td>{{ regnRevo.revokeProof }}</td>
+                    <td>{{ regnRevo.remarks }}</td>
+                    <td>
+                        {{ regnRevo.punishPersonLastName }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/regn-revo-sdm-suffix', regnRevo.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/regn-revo-sdm-suffix', regnRevo.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(regnRevo)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

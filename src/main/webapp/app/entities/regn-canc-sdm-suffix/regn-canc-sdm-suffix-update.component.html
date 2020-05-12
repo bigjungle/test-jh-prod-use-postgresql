@@ -1,0 +1,132 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-regn-canc-sdm-suffix-heading" jhiTranslate="testProdDatabaseApp.regnCanc.home.createOrEditLabel">Create or edit a Regn Canc</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnCanc.name" for="field_name" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.name' | translate">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnCanc.descString" for="field_descString" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.descString' | translate">Desc String</label>
+                    <input type="text" class="form-control" name="descString" id="field_descString"
+                           formControlName="descString"/>
+                    <div *ngIf="editForm.get('descString')!.invalid && (editForm.get('descString')!.dirty || editForm.get('descString')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descString')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnCanc.orgInfo" for="field_orgInfo" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.orgInfo' | translate">Org Info</label>
+                    <input type="text" class="form-control" name="orgInfo" id="field_orgInfo"
+                           formControlName="orgInfo"/>
+                    <div *ngIf="editForm.get('orgInfo')!.invalid && (editForm.get('orgInfo')!.dirty || editForm.get('orgInfo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('orgInfo')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 4000 }">
+                        This field cannot be longer than 4000 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnCanc.cancellationWay" for="field_cancellationWay" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.cancellationWay' | translate">Cancellation Way</label>
+                    <input type="text" class="form-control" name="cancellationWay" id="field_cancellationWay"
+                           formControlName="cancellationWay"/>
+                    <div *ngIf="editForm.get('cancellationWay')!.invalid && (editForm.get('cancellationWay')!.dirty || editForm.get('cancellationWay')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cancellationWay')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnCanc.cancellationReason" for="field_cancellationReason" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.cancellationReason' | translate">Cancellation Reason</label>
+                    <input type="text" class="form-control" name="cancellationReason" id="field_cancellationReason"
+                           formControlName="cancellationReason"/>
+                    <div *ngIf="editForm.get('cancellationReason')!.invalid && (editForm.get('cancellationReason')!.dirty || editForm.get('cancellationReason')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cancellationReason')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnCanc.cancellationTime" for="field_cancellationTime" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.cancellationTime' | translate">Cancellation Time</label>
+                    <div class="input-group">
+                        <input id="field_cancellationTime" type="text" class="form-control" name="cancellationTime" ngbDatepicker #cancellationTimeDp="ngbDatepicker" formControlName="cancellationTime"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="cancellationTimeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnCanc.cancellationProof" for="field_cancellationProof" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.cancellationProof' | translate">Cancellation Proof</label>
+                    <input type="text" class="form-control" name="cancellationProof" id="field_cancellationProof"
+                           formControlName="cancellationProof"/>
+                    <div *ngIf="editForm.get('cancellationProof')!.invalid && (editForm.get('cancellationProof')!.dirty || editForm.get('cancellationProof')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cancellationProof')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnCanc.remarks" for="field_remarks" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.remarks' | translate">Remarks</label>
+                    <input type="text" class="form-control" name="remarks" id="field_remarks"
+                           formControlName="remarks"/>
+                    <div *ngIf="editForm.get('remarks')!.invalid && (editForm.get('remarks')!.dirty || editForm.get('remarks')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('remarks')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 256 }">
+                        This field cannot be longer than 256 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="testProdDatabaseApp.regnCanc.ownerBy" for="field_ownerBy">Owner By</label>
+                    <select class="form-control" id="field_ownerBy" name="ownerBy" formControlName="ownerById">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.lastName }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

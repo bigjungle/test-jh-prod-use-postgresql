@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="testProdDatabaseApp.regnCanc.home.title">Regn Cancs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-regn-canc-sdm-suffix" [routerLink]="['/regn-canc-sdm-suffix/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="testProdDatabaseApp.regnCanc.home.createLabel">
+            Create a new Regn Canc
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="regnCancs?.length === 0">
+        <span jhiTranslate="testProdDatabaseApp.regnCanc.home.notFound">No regnCancs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="regnCancs?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="testProdDatabaseApp.regnCanc.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="descString"><span jhiTranslate="testProdDatabaseApp.regnCanc.descString">Desc String</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="orgInfo"><span jhiTranslate="testProdDatabaseApp.regnCanc.orgInfo">Org Info</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cancellationWay"><span jhiTranslate="testProdDatabaseApp.regnCanc.cancellationWay">Cancellation Way</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cancellationReason"><span jhiTranslate="testProdDatabaseApp.regnCanc.cancellationReason">Cancellation Reason</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cancellationTime"><span jhiTranslate="testProdDatabaseApp.regnCanc.cancellationTime">Cancellation Time</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cancellationProof"><span jhiTranslate="testProdDatabaseApp.regnCanc.cancellationProof">Cancellation Proof</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="remarks"><span jhiTranslate="testProdDatabaseApp.regnCanc.remarks">Remarks</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ownerByLastName"><span jhiTranslate="testProdDatabaseApp.regnCanc.ownerBy">Owner By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let regnCanc of regnCancs ;trackBy: trackId">
+                    <td><a [routerLink]="['/regn-canc-sdm-suffix', regnCanc.id, 'view']">{{ regnCanc.id }}</a></td>
+                    <td>{{ regnCanc.name }}</td>
+                    <td>{{ regnCanc.descString }}</td>
+                    <td>{{ regnCanc.orgInfo }}</td>
+                    <td>{{ regnCanc.cancellationWay }}</td>
+                    <td>{{ regnCanc.cancellationReason }}</td>
+                    <td>{{ regnCanc.cancellationTime | date:'mediumDate' }}</td>
+                    <td>{{ regnCanc.cancellationProof }}</td>
+                    <td>{{ regnCanc.remarks }}</td>
+                    <td>
+                        {{ regnCanc.ownerByLastName }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/regn-canc-sdm-suffix', regnCanc.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/regn-canc-sdm-suffix', regnCanc.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(regnCanc)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

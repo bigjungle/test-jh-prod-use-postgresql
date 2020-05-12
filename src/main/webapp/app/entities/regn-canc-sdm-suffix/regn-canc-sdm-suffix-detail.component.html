@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="regnCanc">
+            <h2><span jhiTranslate="testProdDatabaseApp.regnCanc.detail.title">Regn Canc</span> {{ regnCanc.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="testProdDatabaseApp.regnCanc.name" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.name' | translate">Name</span></dt>
+                <dd>
+                    <span>{{ regnCanc.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnCanc.descString" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.descString' | translate">Desc String</span></dt>
+                <dd>
+                    <span>{{ regnCanc.descString }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnCanc.orgInfo" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.orgInfo' | translate">Org Info</span></dt>
+                <dd>
+                    <span>{{ regnCanc.orgInfo }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnCanc.cancellationWay" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.cancellationWay' | translate">Cancellation Way</span></dt>
+                <dd>
+                    <span>{{ regnCanc.cancellationWay }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnCanc.cancellationReason" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.cancellationReason' | translate">Cancellation Reason</span></dt>
+                <dd>
+                    <span>{{ regnCanc.cancellationReason }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnCanc.cancellationTime" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.cancellationTime' | translate">Cancellation Time</span></dt>
+                <dd>
+                    <span>{{ regnCanc.cancellationTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnCanc.cancellationProof" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.cancellationProof' | translate">Cancellation Proof</span></dt>
+                <dd>
+                    <span>{{ regnCanc.cancellationProof }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnCanc.remarks" [ngbTooltip]="'testProdDatabaseApp.regnCanc.help.remarks' | translate">Remarks</span></dt>
+                <dd>
+                    <span>{{ regnCanc.remarks }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnCanc.ownerBy">Owner By</span></dt>
+                <dd>
+                    {{ regnCanc.ownerByLastName }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/regn-canc-sdm-suffix', regnCanc.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

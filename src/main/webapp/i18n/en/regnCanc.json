@@ -1,0 +1,40 @@
+{
+  "testProdDatabaseApp": {
+    "regnCanc": {
+      "home": {
+        "title": "Regn Cancs",
+        "createLabel": "Create a new Regn Canc",
+        "createOrEditLabel": "Create or edit a Regn Canc",
+        "notFound": "No Regn Cancs found"
+      },
+      "created": "A new Regn Canc is created with identifier {{ param }}",
+      "updated": "A Regn Canc is updated with identifier {{ param }}",
+      "deleted": "A Regn Canc is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Regn Canc {{ id }}?"
+      },
+      "detail": {
+        "title": "Regn Canc"
+      },
+      "name": "Name",
+      "descString": "Desc String",
+      "orgInfo": "Org Info",
+      "cancellationWay": "Cancellation Way",
+      "cancellationReason": "Cancellation Reason",
+      "cancellationTime": "Cancellation Time",
+      "cancellationProof": "Cancellation Proof",
+      "remarks": "Remarks",
+      "ownerBy": "Owner By",
+      "help": {
+        "name": "名称",
+        "descString": "描述",
+        "orgInfo": "培训机构信息",
+        "cancellationWay": "注销方式(主动,被动)",
+        "cancellationReason": "注销原因",
+        "cancellationTime": "注销时间",
+        "cancellationProof": "注销凭证(存储路径)",
+        "remarks": "备注"
+      }
+    }
+  }
+}

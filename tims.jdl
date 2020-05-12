@@ -1,0 +1,108 @@
+// TIMS
+// 202005008 jason edit
+// todo:need add other tables in db-design-tables.md
+// remarks:
+// 主键 id 中文注释 为编号
+
+//source 来源
+//state 状态
+
+// type 类型 类型(新增、变更、修复、存在问题)
+// classification 分类
+// category 类别
+
+// property 属性
+// attribute 特性
+
+// Approve 审批
+// verify 审核
+// Review 审查
+// Check 检查
+
+// cancellation 注销
+// revocation 吊销
+
+/**
+ * 查看权限类别 查看权限名称 创建人,本单位,本单位和下级单位,全部,自定
+ * @author JasonYang
+ */
+enum ViewPermission {
+	PRIVATEVIEW,DEFAULTVIEW,PROTECTVIEW,PUBLICVIEW,CUSTOMVIEW
+}
+
+/**
+ * Training institution registration cancellation 培训机构登记注销表
+ * @author JasonYang
+ */
+entity RegnCanc {
+	/** 名称 */
+	name String required maxlength(256),
+    /** 描述 */
+	descString String maxlength(256),
+    /** 培训机构信息 */
+	orgInfo String maxlength(4000),
+    /** 注销方式(主动,被动) */
+	cancellationWay String maxlength(256),
+    /** 注销原因 */
+	cancellationReason String maxlength(256),
+    /** 注销时间 */
+    cancellationTime LocalDate,
+    /** 注销凭证(存储路径) */
+	cancellationProof String maxlength(256),
+    /** 备注 */
+	remarks String maxlength(256)
+}
+
+/**
+ * Training institution registration revocation 培训机构资质吊销表
+ * @author JasonYang
+ */
+entity RegnRevo {
+	/** 名称 */
+	name String required maxlength(256),
+    /** 描述 */
+	descString String maxlength(256),
+    /** 资质证书编号 */
+	orgInfo String maxlength(4000) required,
+    /** 吊销时长 */
+	revokeTimeSpan Integer required,
+	/** 吊销开始 */
+	revokeStart LocalDate required,
+    /** 吊销结束 */
+	revokeOver LocalDate required,
+    /** 处罚机关 */
+	punishOrg String maxlength(256),
+    /** 处罚时间 */
+	punishTime Instant,
+    /** 事实依据 */
+	facts String maxlength(256),
+    /** 期满自动处理(是否自动恢复) */
+	autoProcess Boolean,
+    /** 凭证上传(存储路径) */
+	revokeProof String maxlength(256)
+    /** 备注 */
+	remarks String maxlength(256)
+}
+
+
+
+relationship ManyToOne{
+    /** 负责人 */
+   	RegnCanc{ownerBy(lastName)} to User,
+
+   	/** 处罚人 */
+    RegnRevo{punishPerson(lastName)} to User
+}
+
+
+paginate  RegnCanc, RegnRevo with infinite-scroll
+dto * with mapstruct
+service all with serviceImpl
+
+// Set filter
+filter RegnCanc, RegnRevo
+
+// Set an angular suffix
+angularSuffix * with sdmSuffix
+
+

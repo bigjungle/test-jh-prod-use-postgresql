@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="regnRevo">
+            <h2><span jhiTranslate="testProdDatabaseApp.regnRevo.detail.title">Regn Revo</span> {{ regnRevo.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.name" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.name' | translate">Name</span></dt>
+                <dd>
+                    <span>{{ regnRevo.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.descString" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.descString' | translate">Desc String</span></dt>
+                <dd>
+                    <span>{{ regnRevo.descString }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.orgInfo" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.orgInfo' | translate">Org Info</span></dt>
+                <dd>
+                    <span>{{ regnRevo.orgInfo }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.revokeTimeSpan" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.revokeTimeSpan' | translate">Revoke Time Span</span></dt>
+                <dd>
+                    <span>{{ regnRevo.revokeTimeSpan }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.revokeStart" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.revokeStart' | translate">Revoke Start</span></dt>
+                <dd>
+                    <span>{{ regnRevo.revokeStart }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.revokeOver" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.revokeOver' | translate">Revoke Over</span></dt>
+                <dd>
+                    <span>{{ regnRevo.revokeOver }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.punishOrg" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.punishOrg' | translate">Punish Org</span></dt>
+                <dd>
+                    <span>{{ regnRevo.punishOrg }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.punishTime" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.punishTime' | translate">Punish Time</span></dt>
+                <dd>
+                    <span>{{ regnRevo.punishTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.facts" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.facts' | translate">Facts</span></dt>
+                <dd>
+                    <span>{{ regnRevo.facts }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.autoProcess" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.autoProcess' | translate">Auto Process</span></dt>
+                <dd>
+                    <span>{{ regnRevo.autoProcess }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.revokeProof" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.revokeProof' | translate">Revoke Proof</span></dt>
+                <dd>
+                    <span>{{ regnRevo.revokeProof }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.remarks" [ngbTooltip]="'testProdDatabaseApp.regnRevo.help.remarks' | translate">Remarks</span></dt>
+                <dd>
+                    <span>{{ regnRevo.remarks }}</span>
+                </dd>
+                <dt><span jhiTranslate="testProdDatabaseApp.regnRevo.punishPerson">Punish Person</span></dt>
+                <dd>
+                    {{ regnRevo.punishPersonLastName }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/regn-revo-sdm-suffix', regnRevo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

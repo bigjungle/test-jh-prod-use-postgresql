@@ -1,0 +1,48 @@
+{
+  "testProdDatabaseApp": {
+    "regnRevo": {
+      "home": {
+        "title": "Regn Revos",
+        "createLabel": "Create a new Regn Revo",
+        "createOrEditLabel": "Create or edit a Regn Revo",
+        "notFound": "No Regn Revos found"
+      },
+      "created": "A new Regn Revo is created with identifier {{ param }}",
+      "updated": "A Regn Revo is updated with identifier {{ param }}",
+      "deleted": "A Regn Revo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Regn Revo {{ id }}?"
+      },
+      "detail": {
+        "title": "Regn Revo"
+      },
+      "name": "Name",
+      "descString": "Desc String",
+      "orgInfo": "Org Info",
+      "revokeTimeSpan": "Revoke Time Span",
+      "revokeStart": "Revoke Start",
+      "revokeOver": "Revoke Over",
+      "punishOrg": "Punish Org",
+      "punishTime": "Punish Time",
+      "facts": "Facts",
+      "autoProcess": "Auto Process",
+      "revokeProof": "Revoke Proof",
+      "remarks": "Remarks",
+      "punishPerson": "Punish Person",
+      "help": {
+        "name": "名称",
+        "descString": "描述",
+        "orgInfo": "资质证书编号",
+        "revokeTimeSpan": "吊销时长",
+        "revokeStart": "吊销开始",
+        "revokeOver": "吊销结束",
+        "punishOrg": "处罚机关",
+        "punishTime": "处罚时间",
+        "facts": "事实依据",
+        "autoProcess": "期满自动处理(是否自动恢复)",
+        "revokeProof": "凭证上传(存储路径)",
+        "remarks": "备注"
+      }
+    }
+  }
+}
