@@ -1,0 +1,42 @@
+application {
+  config {
+    baseName testProdDatabase
+    applicationType monolith
+	buildTool maven
+	serverPort 8088 
+	prodDatabaseType postgresql
+  }
+  entities * except C, D
+}
+
+entity A {
+	/** 名称 */
+	name String required maxlength(256)
+}
+entity B {
+	/** 名称 */
+	name String required maxlength(256),
+	/** 描述 */
+	descString String  maxlength(256)
+}
+entity C {
+	/** 名称 */
+	name String required maxlength(256),
+	/** 描述 */
+	descString String  maxlength(256),
+    /** 附件 */
+	attachmentBlob    Blob
+}
+entity D {
+	/** 名称 */
+	name String required maxlength(256),
+	/** 描述 */
+	descString String  maxlength(256),
+    /** 附件 */
+	attachmentBlob    Blob,
+	/** 创建时间 */
+	insertTime       Instant
+}
+dto * with mapstruct
+service * with serviceClass
+paginate D with pagination

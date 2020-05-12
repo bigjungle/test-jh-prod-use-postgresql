@@ -1,0 +1,11 @@
+version: '2'
+services:
+  testproddatabase-postgresql:
+    image: postgres:12.1
+    # volumes:
+    #     - ~/volumes/jhipster/testProdDatabase/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=testProdDatabase
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
